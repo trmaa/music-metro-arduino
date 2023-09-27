@@ -1,0 +1,56 @@
+
+/***   Included libraries  ***/
+#include <BitbloqUS.h>
+
+/***   Global variables and function definition  ***/
+uint8_t boton = 2;
+US ultrasonidos(23, 23);
+uint8_t zumbador = 4;
+uint8_t potenciometro = A5;
+US ultrasonidos2(6, 6);
+float entrada = 0;
+float i = 0;
+float index = 0;
+float nota = 0;
+int notas[16];
+
+/***   Setup  ***/
+void setup() {
+    pinMode(boton, INPUT);
+    pinMode(zumbador, OUTPUT);
+    pinMode(potenciometro, INPUT);
+    notas[15] = 129;
+    notas[14] = 147;
+    notas[13] = 165;
+    notas[12] = 175;
+    notas[11] = 196;
+    notas[10] = 220;
+    notas[9] = 247;
+    notas[8] = 262;
+    notas[7] = 270;
+    notas[6] = 294;
+    notas[5] = 330;
+    notas[4] = 350;
+    notas[3] = 394;
+    notas[2] = 440;
+    notas[1] = 494;
+    notas[0] = 524;
+}
+
+/***   Loop  ***/
+void loop() {
+    if (digitalRead(boton) == true) {
+        entrada = ((ultrasonidos2.read() * (analogRead(potenciometro) / 100)) + 100);
+        i = 15;
+        nota = 0;
+        for (int bitbloqForCounter = 0; bitbloqForCounter < 16; bitbloqForCounter += 1) {
+            if (entrada <= notas[(int) i]) {
+                nota = notas[(int) i];
+            }
+            else {
+                i = (i - 1);
+            }
+        }
+        tone(zumbador, nota, 100);
+    }
+}
