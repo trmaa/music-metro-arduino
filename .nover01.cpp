@@ -39,7 +39,7 @@ class App {
     }
     void update(){
       if (true) {
-        this->entrada = (analogRead(this->potenciometro) / 100) * 20 + 100;
+        this->entrada = analogRead(this->potenciometro)*0.2 + 100;
         this->iter = 15;
         this->nota = 0;
         for (int i = 0; i < 16; i += 1) {
