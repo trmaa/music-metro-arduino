@@ -10,7 +10,7 @@ class App {
     //math
     float entrada = 0;
     float nota = 0;
-c:\Users\Pablo Trik Marín\Documents\Arduino\musicometro\BQcode
+
     //logicas
     float iter = 0;
     float index = 0;
